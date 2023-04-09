@@ -46,7 +46,64 @@ function loadOrders() {
   });
 }
 
+$(document).ready(function () {
+  loadOrders();
 
+  // send selected row to db
+  $("#send-to-db").click(function () {
+    var selectedOrders = [];
+    var selectedRows = [];
+
+   //loop table row
+    $("tbody tr").each(function () {
+      var checkbox = $(this).find("input[type='checkbox']");
+      if (checkbox.prop("checked")) {
+        //check row data
+        var rowData = {
+          customer: {
+            name: $(this).find("td:eq(1)").text(),
+            contact: $(this).find("td:eq(2)").text(),
+            address: $(this).find("td:eq(3)").text()
+          },
+          delivery: {
+            date: $(this).find("td:eq(4)").text()
+          },
+          product: {
+            model: $(this).find("td:eq(5)").text(),
+            qty: $(this).find("td:eq(6)").text()
+          }
+        };
+        selectedOrders.push(rowData);
+        selectedRows.push($(this));
+      }
+    });
+    
+    if (selectedOrders.length === 0) {
+      alert("Please select at least one order to send to the database.");
+      return;
+    }
+  
+    if (confirm("Are you sure you want to send the selected data to the database?")) {
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:6969/send-to-db",
+        data: JSON.stringify(selectedOrders),
+        contentType: "application/json",
+        success: function (response) {
+          alert("Data sent failed");
+
+          // Remove selected rows from the table
+          selectedRows.forEach(function (row) {
+            row.remove();
+          });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log("Error:", textStatus, errorThrown);
+        },
+      });
+    }
+  });
+});
 
 // Function to enable real-time refresh (polling)
 function setupRealtimeRefresh() {
