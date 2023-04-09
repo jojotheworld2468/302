@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+  }  
+
+  .refresh-icon {
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    cursor: pointer;
+  }
+  
+  .refresh-icon svg {
+    fill: #555;
+  }
+  
+  .refresh-icon:hover svg {
+    fill: #000;
+  }
+  

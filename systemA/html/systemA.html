@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Form</title>
+  <link rel="stylesheet" href="../css/systemA.css">
+</head>
+<body>
+  <div class="container">
+    <form id="order-form">
+      <label for="customer-name">Customer Name:</label>
+      <input type="text" id="customer-name" name="customer[name]" required>
+    
+      <label for="customer-contact">Customer Contact:</label>
+      <input type="text" id="customer-contact" name="customer[contact]" required>
+    
+      <label for="customer-address">Customer Address:</label>
+      <textarea id="customer-address" name="customer[address]" required></textarea>
+    
+      <label for="delivery-date">Delivery Date:</label>
+      <input type="datetime-local" id="delivery-date" name="delivery[date]" required>
+    
+      <label for="product-model">Product Model:</label>
+      <select id="product-model" name="product[model]" required>
+        <option value="" disabled selected>Select a product model</option>
+      </select>
+    
+      <label for="product-qty">Quantity:</label>
+      <input type="number" id="product-qty" name="product[qty]" required inputmode="numeric" pattern="[0-100]*" min="1">
+
+    
+      <button type="button" onclick="submitOrder()">Submit</button>
+    </form>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../js/systemA.js"></script>
+</body>
+</html>
